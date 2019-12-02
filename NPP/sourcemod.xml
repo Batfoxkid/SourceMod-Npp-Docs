@@ -3416,6 +3416,44 @@ Error:
                 <Param name="KeyValues kv"/>
             </Overload>
         </KeyWord>
+        <KeyWord name="FF2_Debug" func="yes">
+            <Overload retVal="native bool" descr="
+Params:
+    path                    Path to the file.
+    use_valve_fs            If true, the Valve file system will be used instead.
+                            This can be used to find files existing in any of
+                            the Valve search paths, rather than solely files
+                            existing directly in the gamedir.
+    valve_path_id           If use_valve_fs, a search path from gameinfo or NULL_STRING for all search paths.
+Notes:
+    Returns whether or not debug is enabled.
+Return:
+    True if enabled, false otherwise.
+">
+            </Overload>
+        </KeyWord>
+        <KeyWord name="FF2_DoAbility" func="yes">
+            <Overload retVal="native void" descr="
+Params:
+    boss                    Boss's index.
+    pluginName              Name of plugin with this ability.
+    abilityName 	        Name of ability.
+    slot		            Slot of charge meter
+  				            0 - rage
+  				            1 - as usual, used for brave jump or teleport
+  				            2 - other charged abilities
+    buttonMode	            How to activate the ability
+  				            0 - by call for medic
+  				            1 - by right mouse button or duck
+  				            2 - by reload button
+Notes:
+    
+">
+                <Param name="const char[] path"/>
+                <Param name="bool use_valve_fs=false"/>
+                <Param name="const char[] valve_path_id=&apos;GAME&apos;"/>
+            </Overload>
+        </KeyWord>
         <KeyWord name="FileExists" func="yes">
             <Overload retVal="native bool" descr="
 Params:
