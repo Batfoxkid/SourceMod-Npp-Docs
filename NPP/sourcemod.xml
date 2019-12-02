@@ -3418,13 +3418,6 @@ Error:
         </KeyWord>
         <KeyWord name="FF2_Debug" func="yes">
             <Overload retVal="native bool" descr="
-Params:
-    path                    Path to the file.
-    use_valve_fs            If true, the Valve file system will be used instead.
-                            This can be used to find files existing in any of
-                            the Valve search paths, rather than solely files
-                            existing directly in the gamedir.
-    valve_path_id           If use_valve_fs, a search path from gameinfo or NULL_STRING for all search paths.
 Notes:
     Returns whether or not debug is enabled.
 Return:
@@ -3435,23 +3428,137 @@ Return:
         <KeyWord name="FF2_DoAbility" func="yes">
             <Overload retVal="native void" descr="
 Params:
-    boss                    Boss's index.
+    boss                    Boss&apos;s index.
     pluginName              Name of plugin with this ability.
-    abilityName 	        Name of ability.
-    slot		            Slot of charge meter
-  				            0 - rage
-  				            1 - as usual, used for brave jump or teleport
-  				            2 - other charged abilities
-    buttonMode	            How to activate the ability
-  				            0 - by call for medic
-  				            1 - by right mouse button or duck
-  				            2 - by reload button
+    abilityName             Name of ability.
+    slot                    Slot of charge meter:
+                              0 - rage
+                              1 - as usual, used for brave jump or teleport
+                              2 - other charged abilities
+    buttonMode              How to activate the ability:
+                              0 - by call for medic
+                              1 - by right mouse button or duck
+                              2 - by reload button
 Notes:
-    
+    Determines how the Boss should use a certain ability.
 ">
-                <Param name="const char[] path"/>
-                <Param name="bool use_valve_fs=false"/>
-                <Param name="const char[] valve_path_id=&apos;GAME&apos;"/>
+                <Param name="int boss"/>
+                <Param name="const char[] pluginName"/>
+                <Param name="const char[] abilityName"/>
+                <Param name="int slot"/>
+                <Param name="int buttonMode=0"/>
+            </Overload>
+        </KeyWord>
+        <KeyWord name="FF2_IsFF2Enabled" func="yes">
+            <Overload retVal="native bool" descr="
+Notes:
+    Is Freak Fortress enabled?
+Return:
+    True if enabled, false otherwise.
+">
+            </Overload>
+        </KeyWord>
+        <KeyWord name="FF2_GetAbilityArgument" func="yes">
+            <Overload retVal="native int" descr="
+Params:
+    boss                    Boss&apos;s index.
+    pluginName              Name of plugin with this ability.
+    abilityName             Name of ability.
+    argument                Number of argument.
+    defValue                Returns if argument is not defined.
+Notes:
+    Gets the integer value of an ability argument.
+Return:
+    Value of argument.
+">
+                <Param name="int boss"/>
+                <Param name="const char[] pluginName"/>
+                <Param name="const char[] abilityName"/>
+                <Param name="int argument"/>
+                <Param name="int defValue=0"/>
+            </Overload>
+        </KeyWord>
+        <KeyWord name="FF2_GetAbilityArgumentFloat" func="yes">
+            <Overload retVal="native float" descr="
+Params:
+    boss                    Boss&apos;s index.
+    pluginName              Name of plugin with this ability.
+    abilityName             Name of ability.
+    argument                Number of argument.
+    defValue                Returns if argument is not defined.
+Notes:
+    Gets the float value of an ability argument.
+Return:
+    Value of argument.
+">
+                <Param name="int boss"/>
+                <Param name="const char[] pluginName"/>
+                <Param name="const char[] abilityName"/>
+                <Param name="int argument"/>
+                <Param name="float defValue=0.0"/>
+            </Overload>
+        </KeyWord>
+        <KeyWord name="FF2_GetAbilityArgumentString" func="yes">
+            <Overload retVal="native void" descr="
+Params:
+    boss                    Boss&apos;s index.
+    pluginName              Name of plugin with this ability.
+    abilityName             Name of ability.
+    argument                Number of argument.
+    buffer                  Buffer for value of argument.
+    bufferLength            Length of buffer string.
+Notes:
+    Gets the integer value of an ability argument.
+">
+                <Param name="int boss"/>
+                <Param name="const char[] pluginName"/>
+                <Param name="const char[] abilityName"/>
+                <Param name="int argument"/>
+                <Param name="int defValue=0"/>
+            </Overload>
+        </KeyWord>
+        <KeyWord name="FF2_GetArgF" func="yes">
+            <Overload retVal="stock float" descr="
+Params:
+    boss                    Boss&apos;s index.
+    pluginName              Name of plugin with this ability.
+    abilityName             Name of ability.
+    argument                Argument name.
+    index                   Argument number, used as fallback when the numbered arguments are used.
+    defValue                Returns if argument is not defined.
+Notes:
+    Get float argument of ability in compatible way.
+Return:
+    The value of the argument or default value.
+">
+                <Param name="int boss"/>
+                <Param name="const char[] pluginName"/>
+                <Param name="const char[] abilityName"/>
+                <Param name="const char[] argument"/>
+                <Param name="int index"/>
+                <Param name="float defValue=0.0"/>
+            </Overload>
+        </KeyWord>
+        <KeyWord name="FF2_GetArgI" func="yes">
+            <Overload retVal="stock int" descr="
+Params:
+    boss                    Boss&apos;s index.
+    pluginName              Name of plugin with this ability.
+    abilityName             Name of ability.
+    argument                Argument name.
+    index                   Argument number, used as fallback when the numbered arguments are used.
+    defValue                Returns if argument is not defined.
+Notes:
+    Get int argument of ability in compatible way.
+Return:
+    The value of the argument or default value.
+">
+                <Param name="int boss"/>
+                <Param name="const char[] pluginName"/>
+                <Param name="const char[] abilityName"/>
+                <Param name="const char[] argument"/>
+                <Param name="int index"/>
+                <Param name="int defValue=0"/>
             </Overload>
         </KeyWord>
         <KeyWord name="FileExists" func="yes">
